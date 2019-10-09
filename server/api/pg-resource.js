@@ -9,8 +9,8 @@ module.exports = postgres => {
   return {
     async createUser({ fullname, email, password }) {
       const newUserInsert = {
-        text: "", // @TODO: Authentication - Server
-        values: [fullname, email, password],
+        text: "CREATE USER ", // TODO : Authentication - Server
+        values: [fullname, email, password]
       };
       try {
         const user = await postgres.query(newUserInsert);
@@ -28,8 +28,8 @@ module.exports = postgres => {
     },
     async getUserAndPasswordForVerification(email) {
       const findUserQuery = {
-        text: "", // @TODO: Authentication - Server
-        values: [email],
+        text: "", // TODO : Authentication - Server
+        values: [email]
       };
       try {
         const user = await postgres.query(findUserQuery);
@@ -41,7 +41,7 @@ module.exports = postgres => {
     },
     async getUserById(id) {
       /**
-       *  @TODO: Handling Server Errors
+       *  TODO : Handling Server Errors
        *
        *  Inside of our resource methods we get to determine when and how errors are returned
        *  to our resolvers using try / catch / throw semantics.
@@ -61,8 +61,8 @@ module.exports = postgres => {
        */
 
       const findUserQuery = {
-        text: "", // @TODO: Basic queries
-        values: [id],
+        text: "SELECT * FROM users", //TODO: Basic queries
+        values: id ? [id] : []
       };
 
       /**
@@ -76,12 +76,13 @@ module.exports = postgres => {
 
       const user = await postgres.query(findUserQuery);
       return user;
+
       // -------------------------------
     },
     async getItems(idToOmit) {
       const items = await postgres.query({
         /**
-         *  @TODO:
+         *  TODO :
          *
          *  idToOmit = ownerId
          *
@@ -93,40 +94,47 @@ module.exports = postgres => {
          */
 
         text: ``,
-        values: idToOmit ? [idToOmit] : [],
+        values: idToOmit ? [idToOmit] : []
       });
       return items.rows;
     },
     async getItemsForUser(id) {
       const items = await postgres.query({
         /**
-         *  @TODO:
+         *  TODO :
          *  Get all Items for user using their id
          */
         text: ``,
-        values: [id],
+        values: [id]
       });
       return items.rows;
     },
     async getBorrowedItemsForUser(id) {
       const items = await postgres.query({
         /**
-         *  @TODO:
+         *  TODO :
          *  Get all Items borrowed by user using their id
          */
         text: ``,
-        values: [id],
+        values: [id]
       });
       return items.rows;
     },
     async getTags() {
-      const tags = await postgres.query(/* @TODO: Basic queries */);
+      const tags = await postgres.query(`SELECT * FROM tags`);
       return tags.rows;
     },
     async getTagsForItem(id) {
       const tagsQuery = {
-        text: ``, // @TODO: Advanced query Hint: use INNER JOIN
-        values: [id],
+        text: `
+        SELECT * FROM tags
+        JOIN itemtags
+        ON itemtags.tagid = tags.tagid
+        JOIN items
+        ON itemtags.itemid = items.itemid
+        WHERE items.itemid = '${id}';
+        `, // TODO : Advanced query Hint: use INNER JOIN
+        values: [id]
       };
 
       const tags = await postgres.query(tagsQuery);
@@ -134,7 +142,7 @@ module.exports = postgres => {
     },
     async saveNewItem({ item, user }) {
       /**
-       *  @TODO: Adding a New Item
+       *  TODO : Adding a New Item
        *
        *  Adding a new Item requires 2 separate INSERT statements.
        *
@@ -164,19 +172,19 @@ module.exports = postgres => {
               const { title, description, tags } = item;
 
               // Generate new Item query
-              // @TODO
+              // TODO
               // -------------------------------
 
               // Insert new Item
-              // @TODO
+              // TODO
               // -------------------------------
 
               // Generate tag relationships query (use the'tagsQueryString' helper function provided)
-              // @TODO
+              // TODO
               // -------------------------------
 
               // Insert tags
-              // @TODO
+              // TODO
               // -------------------------------
 
               // Commit the entire transaction!
@@ -207,6 +215,6 @@ module.exports = postgres => {
           }
         });
       });
-    },
+    }
   };
 };

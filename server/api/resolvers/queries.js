@@ -30,9 +30,16 @@ const queryResolvers = app => ({
     return [];
     // -------------------------------
   },
-  async tags() {
+  async tags(parent, args, { pgResource }, info) {
     // @TODO: Replace this mock return statement with the correct tags from Postgres
-    return [];
-    // -------------------------------
-  },
+    try {
+      const tags = await pgResource.getTags();
+      return tags;
+    } catch (e) {
+      console.log(e);
+      throw new ApolloError(e);
+    }
+  }
 });
+
+module.exports = queryResolvers;

@@ -1,14 +1,13 @@
-const { Pool } = require('pg');
+const { Pool } = require("pg");
 
-module.exports = (app) => {
-  
-  app.get('PG_DB')
+module.exports = app => {
   return new Pool({
-    user: app.get("PG_USER"), 
-    host: app.get("PG_HOST") ,
-    database: app.get("PG_DB"), 
-    password: app.get("PG_PASSWORD"), 
+    user: app.get("PG_USER"),
+    host: app.get("PG_HOST"),
+    database: app.get("PG_DB"),
+    password: app.get("PG_PASSWORD"),
+    port: 5433,
     idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 2000,
+    connectionTimeoutMillis: 2000
   });
 };
