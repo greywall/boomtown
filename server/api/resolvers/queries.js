@@ -27,8 +27,9 @@ const queryResolvers = app => ({
   },
   async items(parent, { filter }, { pgResource }, info) {
     // @TODO: Replace this mock return statement with the correct items from Postgres
+    // console.log(filter);
     return pgResource.getItems(filter);
-    console.log("this is a test");
+
     // -------------------------------
   },
   async tags(parent, args, { pgResource }, info) {

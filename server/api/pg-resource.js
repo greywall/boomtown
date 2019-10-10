@@ -74,8 +74,9 @@ module.exports = postgres => {
        *  Ex: If the user is not found from the DB throw 'User is not found'
        *  If the password is incorrect throw 'User or Password incorrect'
        */
-
       const user = await postgres.query(findUserQuery);
+
+      console.log(user.rows);
       return user.rows[0];
 
       // -------------------------------
@@ -184,10 +185,25 @@ module.exports = postgres => {
               const { title, description, tags } = item;
 
               // Generate new Item query
-              // TODO
+              const newItems = await postgres.query(newItems);
+
+              // const newItems = {
+              //   /**
+              //    *  TODO :
+              //    *
+              //    */
+              //   text: `INSERT into items title,  ;`,
+              //   values: [title, description, tags]
+              // };
               // -------------------------------
 
               // Insert new Item
+
+              // const newTags = {
+              //   text:
+              //   values:
+              // }
+
               // TODO
               // -------------------------------
 

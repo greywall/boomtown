@@ -12,17 +12,15 @@ module.exports = {
      *  Items (GraphQL type) the user has lent (items) and borrowed (borrowed).
      *
      */
-    // @TODO: Uncomment these lines after you define the User type with these fields
-    // items() {
-    //   // @TODO: Replace this mock return statement with the correct items from Postgres
-    //   return []
-    //   // -------------------------------
-    // },
-    // borrowed() {
-    //   // @TODO: Replace this mock return statement with the correct items from Postgres
-    //   return []
-    //   // -------------------------------
-    // }
+    // @ TODO: Uncomment these lines after you define the User type with these fields
+    items({ id }, { args }, { pgResource }, info) {
+      return pgResource.getItems(id);
+      // -------------------------------
+    },
+    borrowed({ id }, { args }, { pgResource }, info) {
+      return pgResource.getItems(id);
+      // -------------------------------
+    }
     // -------------------------------
   },
 
@@ -30,7 +28,7 @@ module.exports = {
     /**
      *  @TODO: Advanced resolvers
      *
-     *  The Item GraphQL type has two fields that are not present in the
+     *  The Item GraphQL type has three fields that are not present in the
      *  Items table in Postgres: itemowner, tags and borrower.
      *
      * According to our GraphQL schema, the itemowner and borrower should return
@@ -38,30 +36,27 @@ module.exports = {
      *
      */
     // @TODO: Uncomment these lines after you define the Item type with these fields
-    // async itemowner() {
-    //   // @TODO: Replace this mock return statement with the correct user from Postgres
-    //   return {
-    //     id: 29,
-    //     fullname: "Mock user",
-    //     email: "mock@user.com",
-    //     bio: "Mock user. Remove me."
-    //   }
-    //   // -------------------------------
-    // },
+    async itemowner({ ownerid }, { args }, { pgResource }, info) {
+      return pgResource.getUserById(ownerid);
+    },
 
     async tags(parent, args, { pgResource }, info) {
-      // @TODO: Replace this mock return statement with the correct tags for the queried Item from Postgres
       return pgResource.getTagsForItem(parent.id);
       // -------------------------------
+    },
+    async borrower(parent, args, { pgResource }, info) {
+      /**
+       * @TODO: Replace this mock return statement with the correct user from Postgres
+       * or null in the case where the item has not been borrowed.
+       */
+      console.log(parent);
+      if (parent.borrowid) {
+        return pgResource.getUserById(parent.borrowid);
+      } else {
+        return null;
+      }
+      // -------------------------------
     }
-    // async borrower() {
-    //   /**
-    //    * @TODO: Replace this mock return statement with the correct user from Postgres
-    //    * or null in the case where the item has not been borrowed.
-    //    */
-    //   return null
-    //   // -------------------------------
-    // }
     // -------------------------------
   }
 };
