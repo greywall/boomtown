@@ -25,9 +25,10 @@ const queryResolvers = app => ({
       throw new ApolloError(e);
     }
   },
-  async items() {
+  async items(parent, { filter }, { pgResource }, info) {
     // @TODO: Replace this mock return statement with the correct items from Postgres
-    return [];
+    return pgResource.getItems(filter);
+    console.log("this is a test");
     // -------------------------------
   },
   async tags(parent, args, { pgResource }, info) {

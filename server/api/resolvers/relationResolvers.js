@@ -1,6 +1,6 @@
 const { ApolloError } = require("apollo-server");
 
-const relationResolvers = {
+module.exports = {
   User: {
     /**
      *  @TODO: Advanced resolvers
@@ -48,11 +48,12 @@ const relationResolvers = {
     //   }
     //   // -------------------------------
     // },
-    // async tags() {
-    //   // @TODO: Replace this mock return statement with the correct tags for the queried Item from Postgres
-    //   return []
-    //   // -------------------------------
-    // },
+
+    async tags(parent, args, { pgResource }, info) {
+      // @TODO: Replace this mock return statement with the correct tags for the queried Item from Postgres
+      return pgResource.getTagsForItem(parent.id);
+      // -------------------------------
+    }
     // async borrower() {
     //   /**
     //    * @TODO: Replace this mock return statement with the correct user from Postgres
@@ -62,5 +63,5 @@ const relationResolvers = {
     //   // -------------------------------
     // }
     // -------------------------------
-  },
+  }
 };

@@ -9,7 +9,7 @@ module.exports = postgres => {
   return {
     async createUser({ fullname, email, password }) {
       const newUserInsert = {
-        text: "CREATE USER ", // TODO : Authentication - Server
+        text: `insert into users ( email, fullname, password)`, // TODO : Authentication - Server
         values: [fullname, email, password]
       };
       try {
@@ -28,9 +28,10 @@ module.exports = postgres => {
     },
     async getUserAndPasswordForVerification(email) {
       const findUserQuery = {
-        text: "", // TODO : Authentication - Server
+        text: "SELECT * FROM users WHERE email = $1", // TODO : Authentication - Server
         values: [email]
       };
+
       try {
         const user = await postgres.query(findUserQuery);
         if (!user) throw "User was not found.";
@@ -61,7 +62,7 @@ module.exports = postgres => {
        */
 
       const findUserQuery = {
-        text: "SELECT * FROM users", //TODO: Basic queries
+        text: "SELECT * FROM users WHERE id = $1", //TODO: Basic queries
         values: id ? [id] : []
       };
 
@@ -75,7 +76,7 @@ module.exports = postgres => {
        */
 
       const user = await postgres.query(findUserQuery);
-      return user;
+      return user.rows[0];
 
       // -------------------------------
     },
@@ -93,9 +94,10 @@ module.exports = postgres => {
          *  to your query text using string interpolation
          */
 
-        text: ``,
+        text: `SELECT * FROM items WHERE ownerid != $1`,
         values: idToOmit ? [idToOmit] : []
       });
+
       return items.rows;
     },
     async getItemsForUser(id) {
@@ -104,9 +106,10 @@ module.exports = postgres => {
          *  TODO :
          *  Get all Items for user using their id
          */
-        text: ``,
+        text: `SELECT * FROM items WHERE ownerid = $1;`,
         values: [id]
       });
+
       return items.rows;
     },
     async getBorrowedItemsForUser(id) {
@@ -114,31 +117,40 @@ module.exports = postgres => {
         /**
          *  TODO :
          *  Get all Items borrowed by user using their id
+         *  Need to call this query in the resolver. similar to stars and directors.
          */
-        text: ``,
+        text: `SELECT * FROM items
+            WHERE borrowid = $1;`,
         values: [id]
       });
       return items.rows;
     },
     async getTags() {
       const tags = await postgres.query(`SELECT * FROM tags`);
-      return tags.rows;
+
+      try {
+        return tags.rows;
+      } catch (error) {
+        console.log(error);
+      }
     },
     async getTagsForItem(id) {
       const tagsQuery = {
         text: `
-        SELECT * FROM tags
-        JOIN itemtags
-        ON itemtags.tagid = tags.tagid
-        JOIN items
-        ON itemtags.itemid = items.itemid
-        WHERE items.itemid = '${id}';
+        SELECT itemtags.itemid, tags.id, tags.title
+        FROM itemtags
+        INNER JOIN tags
+        ON tags.id = itemtags.tagid
+        WHERE itemid = $1;
         `, // TODO : Advanced query Hint: use INNER JOIN
         values: [id]
       };
-
-      const tags = await postgres.query(tagsQuery);
-      return tags.rows;
+      try {
+        const tags = await postgres.query(tagsQuery);
+        return tags.rows;
+      } catch (error) {
+        console.log(error);
+      }
     },
     async saveNewItem({ item, user }) {
       /**
