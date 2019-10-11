@@ -48,9 +48,9 @@ const mutationResolvers = app => ({
   async signup(
     parent,
     {
-      user: { fullname, email, password },
+      user: { fullname, email, password }
     },
-    { pgResource, req },
+    { pgResource, req }
   ) {
     try {
       /**
@@ -64,13 +64,13 @@ const mutationResolvers = app => ({
        * and store that instead. The password can be decoded using the original password.
        */
       // @TODO: Use bcrypt to generate a cryptographic hash to conceal the user's password before storing it.
-      const hashedPassword = "";
+      const hashedPassword = "boomtown";
       // -------------------------------
 
       const user = await context.pgResource.createUser({
         fullname: args.user.fullname,
         email: args.user.email,
-        password: hashedPassword,
+        password: hashedPassword
       });
 
       const token = generateToken(user, app.get("JWT_SECRET"));
@@ -78,12 +78,12 @@ const mutationResolvers = app => ({
       setCookie({
         tokenName: app.get("JWT_COOKIE_NAME"),
         token,
-        res: req.res,
+        res: req.res
       });
 
       return {
-        toekn,
-        user,
+        token,
+        user
       };
     } catch (e) {
       throw new AuthenticationError(e);
@@ -93,13 +93,13 @@ const mutationResolvers = app => ({
   async login(
     parent,
     {
-      user: { email, password },
+      user: { email, password }
     },
-    { pgResource, req },
+    { pgResource, req }
   ) {
     try {
       const user = await context.pgResource.getUserAndPasswordForVerification(
-        args.user.email,
+        args.user.email
       );
       if (!user) throw "User was not found.";
       /**
@@ -118,12 +118,12 @@ const mutationResolvers = app => ({
       setCookie({
         tokenName: app.get("JWT_COOKIE_NAME"),
         token,
-        res: req.res,
+        res: req.res
       });
 
       return {
         token,
-        user,
+        user
       };
     } catch (e) {
       throw new AuthenticationError(e);
@@ -147,13 +147,15 @@ const mutationResolvers = app => ({
      *  Again, you may look at the user resolver for an example of what
      *  destructuring should look like.
      */
-    const user = await jwt.decode(context.token, app.get("JWT_SECRET"));
+    // const user = await jwt.decode(context.token, app.get("JWT_SECRET"));
+    const user = 1;
     const newItem = await context.pgResource.saveNewItem({
       item: args.item,
-      user,
+      user
     });
+
     return newItem;
-  },
+  }
 });
 
 module.exports = mutationResolvers;

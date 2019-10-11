@@ -9,7 +9,8 @@ module.exports = postgres => {
   return {
     async createUser({ fullname, email, password }) {
       const newUserInsert = {
-        text: `insert into users ( email, fullname, password)`, // TODO : Authentication - Server
+        text: `insert into users ( email, fullname, password)
+        values ($1, $2, $3)`, // TODO : Authentication - Server
         values: [fullname, email, password]
       };
       try {
@@ -76,7 +77,8 @@ module.exports = postgres => {
        */
       const user = await postgres.query(findUserQuery);
 
-      console.log(user.rows);
+      //console.log(user.rows);
+
       return user.rows[0];
 
       // -------------------------------
@@ -154,8 +156,13 @@ module.exports = postgres => {
       }
     },
     async saveNewItem({ item, user }) {
+      // console.log(user);
+      // console.log(item);
+
       /**
        *  TODO : Adding a New Item
+       * 
+       
        *
        *  Adding a new Item requires 2 separate INSERT statements.
        *
@@ -185,24 +192,25 @@ module.exports = postgres => {
               const { title, description, tags } = item;
 
               // Generate new Item query
-              const newItems = await postgres.query(newItems);
 
-              // const newItems = {
-              //   /**
-              //    *  TODO :
-              //    *
-              //    */
-              //   text: `INSERT into items title,  ;`,
-              //   values: [title, description, tags]
-              // };
-              // -------------------------------
+              const itemsQuery = {
+                text: `INSERT into items (title, description, ownerid)
+                 values ($1,$2, $3) returning id, title, description;`,
+                values: [title, description, user]
+              };
+              //console.log(itemsQuery);
+              const newItems = await postgres.query(itemsQuery);
 
+              const tagsQuery = {
+                text: `INSERT into itemtags (itemid, tagid)
+                values ($1,$2)`,
+                values: [tagsQueryString(item.tags, item.id, "")]
+              };
               // Insert new Item
-
-              // const newTags = {
-              //   text:
-              //   values:
-              // }
+              //console.log(itemid);
+              // console.log(newItems);
+              const newTags = await postgres.query(tagsQuery);
+              const itemid = newitem.rows[0].id;
 
               // TODO
               // -------------------------------
@@ -223,7 +231,7 @@ module.exports = postgres => {
                 // release the client back to the pool
                 done();
                 // Uncomment this resolve statement when you're ready!
-                // resolve(newItem.rows[0])
+                resolve(newItem.rows[0]);
                 // -------------------------------
               });
             });
