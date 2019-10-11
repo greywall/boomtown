@@ -148,13 +148,16 @@ const mutationResolvers = app => ({
      *  destructuring should look like.
      */
     // const user = await jwt.decode(context.token, app.get("JWT_SECRET"));
-    const user = 1;
-    const newItem = await context.pgResource.saveNewItem({
-      item: args.item,
-      user
-    });
-
-    return newItem;
+    try {
+      const user = 2;
+      const newItem2 = await context.pgResource.saveNewItem({
+        item: args.item,
+        user
+      });
+      return newItem2;
+    } catch (e) {
+      throw new ApolloError(e);
+    }
   }
 });
 
