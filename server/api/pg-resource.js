@@ -168,13 +168,12 @@ module.exports = postgres => {
               };
 
               const newItem2 = await postgres.query(itemsQuery);
-              const itemid = newitem2.rows[0].id;
-              const tagid = tag.id;
+              const itemid = newItem2.rows[0].id;
 
               const tagsQuery = {
                 text: `INSERT into itemtags (tagid, itemid)
-                values ($1,$2)`,
-                values: [tagsQueryString(tagid, itemid, "")]
+                values ${tagsQueryString([...tags], itemid, "")}`,
+                values: tags.map(t => t.id)
               };
               const newTags = await postgres.query(tagsQuery);
 
