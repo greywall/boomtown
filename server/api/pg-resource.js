@@ -117,8 +117,8 @@ module.exports = postgres => {
                   values: [title, description, user]
                 };
 
-                const newItem2 = await postgres.query(itemsQuery);
-                const itemid = newItem2.rows[0].id;
+                const newItem = await postgres.query(itemsQuery);
+                const itemid = newItem.rows[0].id;
 
                 const tagsQuery = {
                   text: `INSERT into itemtags (tagid, itemid)
@@ -132,7 +132,7 @@ module.exports = postgres => {
                     throw err;
                   }
                   done();
-                  resolve(newItem2.rows[0]);
+                  resolve(newItem.rows[0]);
                 });
               });
             } catch (e) {
