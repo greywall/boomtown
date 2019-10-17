@@ -22,6 +22,13 @@ const styles = theme => ({
     alignItems: "center",
     flexwrap: "wrap"
   },
+  navigationtoolbarbutton: {
+    shadowColor: "#FFF",
+    boxShadow: "none"
+  },
+  navigationtooladdicon: {
+    color: "#000"
+  },
   Menubaricon: {
     justifyContent: "flex-end",
     backgroundColor: "green"

@@ -16,7 +16,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menubaricon from "../Menubaricon";
 import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 
 const Menubar = ({ classes }) => {
   return (
@@ -35,10 +35,21 @@ const Menubar = ({ classes }) => {
         </div>
 
         <div className={classes.navigationtoolbar}>
-          <Fab variant="extended">
-            <AddIcon backgroundColor="green" />
+          <Fab
+            className={classes.navigationtoolbarbutton}
+            color="primary"
+            variant="extended"
+            boxShadow="none"
+          >
+            <AddCircleIcon
+              Icon
+              className={classes.navigationtooladdicon}
+              aria-label="add"
+              size="large"
+            />
             SHARE SOMETHING
           </Fab>
+
           <Menubaricon className="menubaricon1"></Menubaricon>
         </div>
       </Toolbar>
