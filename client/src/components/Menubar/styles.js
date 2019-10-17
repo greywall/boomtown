@@ -1,5 +1,5 @@
-import { display, fontSize } from "@material-ui/system";
-import { green } from "@material-ui/core/colors";
+import { display, fontSize, width } from "@material-ui/system";
+import { green, purple } from "@material-ui/core/colors";
 
 const styles = theme => ({
   root: {
@@ -10,6 +10,17 @@ const styles = theme => ({
     marginRight: theme.spacing(40),
     justifyContent: "flex-end",
     backgroundColor: "green"
+  },
+  toolbar: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  navigationtoolbar: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexwrap: "wrap"
   },
   Menubaricon: {
     justifyContent: "flex-end",

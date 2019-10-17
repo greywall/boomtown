@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styles from "./styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -21,45 +21,29 @@ import AddIcon from "@material-ui/icons/Add";
 const Menubar = ({ classes }) => {
   return (
     <AppBar position="static">
-      <Toolbar className="tool-bar">
-        <NavLink exact className="nav-link" to="/" activeClassName="selected">
-          <img
-            src={logo}
-            className="App-logo"
-            alt="logo"
-            height="30px"
-            weight="20px"
-          />
-        </NavLink>
+      <Toolbar className="tool-bar" className={classes.toolbar}>
+        <div>
+          <NavLink exact className="nav-link" to="/" activeClassName="selected">
+            <img
+              src={logo}
+              className={classes.applogo}
+              alt="logo"
+              height="30px"
+              weight="20px"
+            />
+          </NavLink>
+        </div>
 
-        <Fab variant="extended">
-          <AddIcon />
-          SHARE SOMETHING
-        </Fab>
-
-        <Menubaricon className="menubaricon1"></Menubaricon>
+        <div className={classes.navigationtoolbar}>
+          <Fab variant="extended">
+            <AddIcon backgroundColor="green" />
+            SHARE SOMETHING
+          </Fab>
+          <Menubaricon className="menubaricon1"></Menubaricon>
+        </div>
       </Toolbar>
     </AppBar>
   );
 };
 
 export default withStyles(styles)(Menubar);
-
-{
-  /* <AppBar position="static">
-      <Toolbar>
-        <IconButton
-          edge="start"
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="menu"
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" className={classes.title}>
-          News
-        </Typography>
-        <Button color="inherit">Login</Button>
-      </Toolbar>
-    </AppBar> */
-}
