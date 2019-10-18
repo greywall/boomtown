@@ -8,8 +8,8 @@ module.exports = gql`
     imageurl: String
     description: String!
     itemowner: User!
-    tags: [Tag]
-    created: String!
+    tags: [Tag]!
+    created: String
     borrower: User
   }
   type User {
@@ -50,6 +50,6 @@ module.exports = gql`
     signup: Boolean
     login: Boolean
     logout: Boolean
-    addItem(item: NewItemInput): Item!
+    addItem(item: NewItemInput): Item
   }
 `;

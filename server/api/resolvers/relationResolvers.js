@@ -2,28 +2,52 @@ const { ApolloError } = require("apollo-server");
 
 module.exports = {
   User: {
-    items({ id }, { args }, { pgResource }, info) {
-      return pgResource.getItems(id);
+    async items({ id }, { args }, { pgResource }, info) {
+      try {
+        const items = await pgResource.getItemsForUser(id);
+        return items;
+      } catch (e) {
+        throw "No Items were found";
+      }
     },
-    borrowed({ id }, { args }, { pgResource }, info) {
-      return pgResource.getItems(id);
+    async borrowed({ id }, { args }, { pgResource }, info) {
+      try {
+        const items = await pgResource.getBorrowedItemsForUser(id);
+        return items;
+      } catch (e) {
+        throw "No items were found";
+      }
     }
   },
 
   Item: {
-    async itemowner({ ownerid }, { args }, { pgResource }, info) {
-      return pgResource.getUserById(ownerid);
+    async itemowner({ itemowner }, { args }, { pgResource }, info) {
+      try {
+        const itemowner1 = pgResource.getUserById(itemowner);
+        return itemowner1;
+      } catch (e) {
+        throw "No items were found";
+      }
     },
 
-    async tags(parent, args, { pgResource }, info) {
-      return pgResource.getTagsForItem(parent.id);
+    async tags({ id }, args, { pgResource }, info) {
+      try {
+        const tags = pgResource.getTagsForItem(id);
+        return tags;
+      } catch (e) {
+        throw "No tags were found";
+      }
     },
-    async borrower(parent, args, { pgResource }, info) {
-      console.log(parent);
-      if (parent.borrowid) {
-        return pgResource.getUserById(parent.borrowid);
-      } else {
-        return null;
+    async borrower({ borrower }, args, { pgResource }, info) {
+      try {
+        if (borrower) {
+          const borrowerUser = pgResource.getUserById(borrower);
+          return borrowerUser;
+        } else {
+          return null;
+        }
+      } catch (e) {
+        throw "No tags were found";
       }
     }
   }

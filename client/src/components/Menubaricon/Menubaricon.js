@@ -3,8 +3,8 @@ import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-
-const options = ["Your Profile", "Sign Out"];
+import FingerprintIcon from "@material-ui/icons/Fingerprint";
+import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 
 const ITEM_HEIGHT = 48;
 
@@ -43,15 +43,15 @@ export default function Menubaricon() {
           }
         }}
       >
-        {options.map(option => (
-          <MenuItem
-            key={option}
-            selected={option === "Pyxis"}
-            onClick={handleClose}
-          >
-            {option}
-          </MenuItem>
-        ))}
+        <MenuItem onClick={handleClose}>
+          <FingerprintIcon aria-label="add" size="large" />
+          Your Profile
+        </MenuItem>
+
+        <MenuItem onClick={handleClose}>
+          <PowerSettingsNewIcon aria-label="add" size="large" />
+          Sign Out
+        </MenuItem>
       </Menu>
     </div>
   );

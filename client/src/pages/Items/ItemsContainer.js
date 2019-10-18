@@ -30,7 +30,18 @@ const GET_ITEMS = gql`
 
 class ItemsContainer extends Component {
   render() {
-    return <Items></Items>;
+    return (
+      <Query query={GET_ITEMS} variables={{ id: 1 }}>
+        {({ loading, error, data }) => {
+          if (loading) return "Loading";
+          if (error) return `Error: ${error}`;
+          if (data) {
+            console.log(data);
+            return <Items items={data.items} />;
+          }
+        }}
+      </Query>
+    );
   }
 }
 

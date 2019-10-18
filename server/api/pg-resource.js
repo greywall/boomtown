@@ -9,7 +9,7 @@ module.exports = postgres => {
   return {
     async createUser({ fullname, email, password }) {
       const newUserInsert = {
-        text: `insert into users ( email, fullname, password)
+        text: `INSERT into USERS (fullname, email, password)
         values ($1, $2, $3)`, // TODO : Authentication - Server
         values: [fullname, email, password]
       };
@@ -54,54 +54,66 @@ module.exports = postgres => {
       }
     },
     async getItems(idToOmit) {
-      const items = await postgres.query({
+      const getItems = {
         text: `SELECT * FROM items WHERE ownerid != $1`,
         values: idToOmit ? [idToOmit] : []
-      });
-
-      return items.rows;
+      };
+      try {
+        const items = await postgres.query(getItems);
+        return items.rows;
+      } catch (e) {
+        throw "item not found";
+      }
     },
     async getItemsForUser(id) {
-      const items = await postgres.query({
+      const getItemsForUser = {
         text: `SELECT * FROM items WHERE ownerid = $1;`,
         values: [id]
-      });
-
-      return items.rows;
+      };
+      try {
+        const items = await postgres.query(getItemsForUser);
+        return items.rows;
+      } catch (e) {
+        throw "Items not found";
+      }
     },
     async getBorrowedItemsForUser(id) {
-      const items = await postgres.query({
+      const getBorrowedItemsForUser = {
         text: `SELECT * FROM items
             WHERE borrowid = $1;`,
         values: [id]
-      });
-      return items.rows;
+      };
+      try {
+        const items = await postgres.query(getBorrowedItemsForUser);
+        return items.rows;
+      } catch (e) {
+        throw "Items not found";
+      }
     },
     async getTags() {
-      const tags = await postgres.query(`SELECT * FROM tags`);
-
+      const getTags = `SELECT * FROM tags`;
       try {
+        const tags = await postgres.query(getTags);
         return tags.rows;
-      } catch (error) {
-        console.log(error);
+      } catch (e) {
+        throw "Tags were not found";
       }
     },
     async getTagsForItem(id) {
       const tagsQuery = {
         text: `
-        SELECT itemtags.itemid, tags.id, tags.title
-        FROM itemtags
-        INNER JOIN tags
+        SELECT id, title
+        FROM tags
+        INNER JOIN itemtags
         ON tags.id = itemtags.tagid
-        WHERE itemid = $1;
-        `,
+        WHERE itemtags.itemid = $1;`,
         values: [id]
       };
       try {
         const tags = await postgres.query(tagsQuery);
         return tags.rows;
-      } catch (error) {
-        console.log(error);
+      } catch (e) {
+        throw "Tags were not found";
       }
     },
     async saveNewItem({ item, user }) {
@@ -111,20 +123,23 @@ module.exports = postgres => {
             try {
               client.query("BEGIN", async err => {
                 const { title, description, tags } = item;
+
                 const itemsQuery = {
-                  text: `INSERT into items (title, description, ownerid)
-                 values ($1,$2, $3) returning id, title, description;`,
+                  text: `INSERT INTO items (title, description, ownerid)
+                 values ($1,$2, $3) returning *;`,
                   values: [title, description, user]
                 };
 
                 const newItem = await postgres.query(itemsQuery);
                 const itemid = newItem.rows[0].id;
 
+                let values = tagsQueryString([...tags], itemid, "");
                 const tagsQuery = {
-                  text: `INSERT into itemtags (tagid, itemid)
-                VALUES ${tagsQueryString([...tags], itemid, "")}`,
+                  text: `INSERT INTO itemtags (tagid, itemid)
+                  VALUES ${values}`,
                   values: tags.map(tag => tag.id)
                 };
+
                 const newTags = await postgres.query(tagsQuery);
 
                 client.query("COMMIT", err => {
@@ -151,7 +166,7 @@ module.exports = postgres => {
           });
         });
       } catch (e) {
-        console.log(e);
+        throw "There was an error";
       }
     }
   };

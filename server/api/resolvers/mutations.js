@@ -128,16 +128,12 @@ const mutationResolvers = app => ({
     return true;
   },
   async addItem(parent, args, context, info) {
-    try {
-      const user = 2;
-      const newItem = await context.pgResource.saveNewItem({
-        item: args.item,
-        user
-      });
-      return newItem;
-    } catch (e) {
-      throw new ApolloError(e);
-    }
+    const user = 1;
+    const newItem = await context.pgResource.saveNewItem({
+      item: args.item,
+      user
+    });
+    return newItem;
   }
 });
 
