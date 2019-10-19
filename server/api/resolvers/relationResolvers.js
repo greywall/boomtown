@@ -7,7 +7,7 @@ module.exports = {
         const items = await pgResource.getItemsForUser(id);
         return items;
       } catch (e) {
-        throw "No Items were found";
+        throw new ApolloError(e);
       }
     },
     async borrowed({ id }, { args }, { pgResource }, info) {
@@ -15,39 +15,40 @@ module.exports = {
         const items = await pgResource.getBorrowedItemsForUser(id);
         return items;
       } catch (e) {
-        throw "No items were found";
+        throw new ApolloError(e);
       }
     }
   },
 
   Item: {
-    async itemowner({ itemowner }, { args }, { pgResource }, info) {
+    async itemowner({ ownerid }, args, { pgResource }, info) {
       try {
-        const itemowner1 = pgResource.getUserById(itemowner);
-        return itemowner1;
+        const itemowner = await pgResource.getUserById(ownerid);
+        return itemowner;
       } catch (e) {
-        throw "No items were found";
+        throw new ApolloError(e);
       }
     },
 
-    async tags({ id }, args, { pgResource }, info) {
-      try {
-        const tags = pgResource.getTagsForItem(id);
-        return tags;
-      } catch (e) {
-        throw "No tags were found";
-      }
-    },
     async borrower({ borrower }, args, { pgResource }, info) {
       try {
         if (borrower) {
-          const borrowerUser = pgResource.getUserById(borrower);
+          const borrowerUser = await pgResource.getUserById(borrower);
           return borrowerUser;
         } else {
           return null;
         }
       } catch (e) {
-        throw "No tags were found";
+        throw new ApolloError(e);
+      }
+    },
+
+    async tags({ id }, args, { pgResource }, info) {
+      try {
+        const tags = await pgResource.getTagsForItem(id);
+        return tags;
+      } catch (e) {
+        throw new ApolloError(e);
       }
     }
   }

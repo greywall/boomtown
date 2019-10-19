@@ -1,6 +1,3 @@
-import { display, fontSize, width } from "@material-ui/system";
-import { green, purple } from "@material-ui/core/colors";
-
 const styles = theme => ({
   root: {
     flexGrow: 1,

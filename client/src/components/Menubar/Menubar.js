@@ -1,19 +1,11 @@
-import React, { Fragment } from "react";
+import React from "react";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import { NavLink } from "react-router-dom";
 import logo from "../../images/boomtown.svg";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import Icon from "@material-ui/core/Icon";
-import add_circle from "@material-ui/core/Icon";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+// import Icon from "@material-ui/core/Icon";
 import Menubaricon from "../Menubaricon";
 import Fab from "@material-ui/core/Fab";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
@@ -39,10 +31,8 @@ const Menubar = ({ classes }) => {
             className={classes.navigationtoolbarbutton}
             color="primary"
             variant="extended"
-            boxShadow="none"
           >
             <AddCircleIcon
-              Icon
               className={classes.navigationtooladdicon}
               aria-label="add"
               size="large"

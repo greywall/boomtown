@@ -37,7 +37,7 @@ module.exports = ({ app, pgResource }) => {
           pgResource
         };
       } catch (e) {
-        throw e;
+        throw new ApolloError(e);
       }
     },
     schema
