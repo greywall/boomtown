@@ -1,7 +1,7 @@
 const styles = theme => ({
   root: {
     background: "black",
-    padding: "70px"
+    padding: "20px"
   }
 });
 

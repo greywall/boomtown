@@ -9,6 +9,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Items from "../../pages/Items/Items";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 
 const ItemCard = ({ classes, item }) => {
   return (
@@ -16,32 +18,45 @@ const ItemCard = ({ classes, item }) => {
       <Card className={classes.cardholder}>
         <CardActionArea>
           <CardMedia
-            src="http://place-puppy.com/300x450"
-            className={classes.image}
-            image="/static/images/cards/paella.jpg"
-            title="Paella dish"
+            src="http://place-puppy.com/500x280"
+            className={classes.cardimage}
+            image="http://place-puppy.com/500x280"
+            title="Cute Puppy"
           />
 
           <CardContent>
-            <div>
+            <div className={classes.cardcontentdiv}>
               <Avatar
-                classname={classes.personicon}
-                fullname={"Persons Name"}
+                className={classes.personicon}
+                alt="Puppy Name"
+                src="http://place-puppy.com/500x280"
               />
-
-              <p>This is my person's Name</p>
-              <p>This is the created date</p>
+              <Typography className={classes.userinfo}>
+                <Box>Jerry Jefferson</Box>
+                <Box color="lightgrey">25 years ago</Box>
+              </Typography>
             </div>
 
-            <div>
-              <h1>The Name of the card</h1>
-              <p>This is where the tags go</p>
-              <p>Item Description</p>
+            <div className={classes.carddetails}>
+              <Typography>
+                <Box
+                  className={classes.carddetail}
+                  className={classes.cardtitle}
+                >
+                  The Name of the card
+                </Box>
+                <Box color="lightgrey" className={classes.carddetail}>
+                  This is where the tags go This is where the tags go This is
+                  where the tags go This is where the tags go This is where the
+                  tags go This is where the tags go
+                </Box>
+                <Box className={classes.carddetail}>Item Description</Box>
+              </Typography>
             </div>
           </CardContent>
         </CardActionArea>
 
-        <CardActions>
+        <CardActions className={classes.cardbutton}>
           <Button variant="contained" className={classes.buttonborrow}>
             Borrow
           </Button>
