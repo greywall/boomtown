@@ -15,7 +15,12 @@ const Menubar = ({ classes }) => {
     <AppBar position="static">
       <Toolbar className="tool-bar" className={classes.toolbar}>
         <div>
-          <NavLink exact className="nav-link" to="/" activeClassName="selected">
+          <NavLink
+            exact
+            className="nav-link"
+            to="/items"
+            activeClassName="selected"
+          >
             <img
               src={logo}
               className={classes.applogo}
@@ -27,19 +32,20 @@ const Menubar = ({ classes }) => {
         </div>
 
         <div className={classes.navigationtoolbar}>
-          <Fab
-            className={classes.navigationtoolbarbutton}
-            color="primary"
-            variant="extended"
-          >
-            <AddCircleIcon
-              className={classes.navigationtooladdicon}
-              aria-label="add"
-              size="large"
-            />
-            SHARE SOMETHING
-          </Fab>
-
+          <NavLink exact to="/share">
+            <Fab
+              className={classes.navigationtoolbarbutton}
+              color="primary"
+              variant="extended"
+            >
+              <AddCircleIcon
+                className={classes.navigationtooladdicon}
+                aria-label="add"
+                size="large"
+              />
+              SHARE SOMETHING
+            </Fab>
+          </NavLink>
           <Menubaricon className="menubaricon1"></Menubaricon>
         </div>
       </Toolbar>

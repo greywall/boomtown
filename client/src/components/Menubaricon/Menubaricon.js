@@ -5,6 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import FingerprintIcon from "@material-ui/icons/Fingerprint";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
+import { NavLink } from "react-router-dom";
 
 const ITEM_HEIGHT = 48;
 
@@ -43,15 +44,19 @@ export default function Menubaricon() {
           }
         }}
       >
-        <MenuItem onClick={handleClose}>
-          <FingerprintIcon aria-label="add" size="large" />
-          Your Profile
-        </MenuItem>
+        <NavLink to="/profile">
+          <MenuItem onClick={handleClose}>
+            <FingerprintIcon aria-label="add" size="large" />
+            Your Profile
+          </MenuItem>
+        </NavLink>
 
-        <MenuItem onClick={handleClose}>
-          <PowerSettingsNewIcon aria-label="add" size="large" />
-          Sign Out
-        </MenuItem>
+        <NavLink to="/welcome">
+          <MenuItem onClick={handleClose}>
+            <PowerSettingsNewIcon aria-label="add" size="large" />
+            Sign Out
+          </MenuItem>
+        </NavLink>
       </Menu>
     </div>
   );
