@@ -9,6 +9,18 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import { withStyles } from "@material-ui/core/styles";
+import styles from "./styles";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import CheckBoxIcon from "@material-ui/icons/CheckBox";
+import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+
+const shareFormStyle = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center"
+};
 
 class ShareForm extends Component {
   constructor(props) {
@@ -34,7 +46,7 @@ class ShareForm extends Component {
     return (
       <div>
         <h1>Share. Borrow. Prosper.</h1>
-        <form>
+        <form style={shareFormStyle}>
           <div>
             <TextField
               id="itemtitle"
@@ -42,7 +54,7 @@ class ShareForm extends Component {
               name="Item Name"
               type="text"
               placeholder="Name your item"
-              value={this.state.username}
+              // value={this.state.username}
             />
           </div>
 
@@ -52,7 +64,7 @@ class ShareForm extends Component {
               name="Item Description"
               type="text"
               placeholder="Describe your item"
-              value={this.state.username}
+              // value={this.state.username}
             />
           </div>
           <p>Add Tags:</p>
@@ -66,9 +78,22 @@ class ShareForm extends Component {
               value={this.state.username}
             />
 
-            {tags.map(tag => (
-              <ListItemText id={tag.id} primary={tag.title} />
-            ))}
+            <div>
+              {tags.map(tag => {
+                return (
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+                        checkedIcon={<CheckBoxIcon fontSize="small" />}
+                        value="checkedI"
+                      />
+                    }
+                    label="Custom size"
+                  />
+                );
+              })}
+            </div>
           </div>
           <CardActions>
             <Button variant="contained" type="submit">
@@ -81,4 +106,4 @@ class ShareForm extends Component {
   }
 }
 
-export default ShareForm;
+export default withStyles(styles)(ShareForm);
