@@ -21,7 +21,7 @@ const ItemCard = ({ classes, item }) => {
           <CardMedia
             className={classes.cardimage}
             image="http://place-puppy.com/500x280"
-            title={item.title}
+            title="puppy place"
           />
         </Link>
         <CardContent>
