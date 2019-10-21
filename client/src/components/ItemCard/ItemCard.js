@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Link from "@material-ui/core/Link";
+import PropTypes from "prop-types";
 
 const ItemCard = ({ classes, item }) => {
   return (
@@ -39,9 +40,7 @@ const ItemCard = ({ classes, item }) => {
 
           <div className={classes.carddetails}>
             <Typography>
-              <Box className={classes.carddetail} className={classes.cardtitle}>
-                {item.title}
-              </Box>
+              <Box className={classes.carddetail}>{item.title}</Box>
 
               {item.tags.map(tag => (
                 <Box
@@ -66,6 +65,24 @@ const ItemCard = ({ classes, item }) => {
       </CardActions>
     </Card>
   );
+};
+
+ItemCard.defaultProps = {
+  item: {
+    imageurl: "http://place-puppy.com/500x280",
+    itemowner: {
+      fullname: "Name here"
+    },
+    date: "date here",
+    title: "Item Title",
+    tags: [
+      { id: 0, title: "Tags 1" },
+      { id: 1, title: "Tags 2" },
+      { id: 2, title: "Tags 3" },
+      { id: 3, title: "Tags 4" }
+    ],
+    description: "Description goes here"
+  }
 };
 
 export default withStyles(styles)(ItemCard);

@@ -72,20 +72,20 @@ class ShareForm extends Component {
           <p>Add Tags:</p>
 
           <div>
-            {tags.map(tag => {
+            {/* {tags.map(tag => {
               return (
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
-                      checkedIcon={<CheckBoxIcon fontSize="small" />}
-                      value="checkedI"
-                    />
-                  }
-                  label={tag.title}
-                />
+                // <FormControlLabel
+                //   control={
+                //     <Checkbox
+                //       icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+                //       checkedIcon={<CheckBoxIcon fontSize="small" />}
+                //       value="checkedI"
+                //     />
+                //   }
+                //   label={tag.title}
+                // />
               );
-            })}
+            })} */}
           </div>
           <CardActions>
             <Button variant="contained" type="submit">

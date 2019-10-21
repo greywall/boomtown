@@ -5,7 +5,11 @@ import ItemCard from "../ItemCard/ItemCard";
 import styles from "./styles";
 
 const ShareItemPreview = ({ classes }) => {
-  return <div>{/* <ItemCard /> */} This is where the itemcard goes</div>;
+  return (
+    <div>
+      <ItemCard />
+    </div>
+  );
 };
 
 export default withStyles(styles)(ShareItemPreview);
