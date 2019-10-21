@@ -37,16 +37,18 @@ class ShareForm extends Component {
 
     const value = e.target.value;
     this.setState({ username: value });
-    console.log("password: ", this.refs.password.value);
+    // console.log("password: ", this.refs.password.value);
   }
 
   render() {
     const { classes, tags } = this.props;
-    console.log(tags);
+
     return (
       <div>
         <h1>Share. Borrow. Prosper.</h1>
-        <form style={shareFormStyle}>
+        <form
+        // style={shareFormStyle}
+        >
           <div>
             <TextField
               id="itemtitle"
@@ -70,30 +72,20 @@ class ShareForm extends Component {
           <p>Add Tags:</p>
 
           <div>
-            <TextField
-              onChange={e => this.updateInput(e)}
-              name="Item Description"
-              type="text"
-              placeholder="Describe your item"
-              value={this.state.username}
-            />
-
-            <div>
-              {tags.map(tag => {
-                return (
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
-                        checkedIcon={<CheckBoxIcon fontSize="small" />}
-                        value="checkedI"
-                      />
-                    }
-                    label="Custom size"
-                  />
-                );
-              })}
-            </div>
+            {tags.map(tag => {
+              return (
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+                      checkedIcon={<CheckBoxIcon fontSize="small" />}
+                      value="checkedI"
+                    />
+                  }
+                  label={tag.title}
+                />
+              );
+            })}
           </div>
           <CardActions>
             <Button variant="contained" type="submit">
