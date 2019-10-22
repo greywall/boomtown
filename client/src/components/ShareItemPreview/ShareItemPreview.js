@@ -6,7 +6,7 @@ import styles from "./styles";
 
 const ShareItemPreview = ({ classes }) => {
   return (
-    <div>
+    <div className={classes.shareitemprev}>
       <ItemCard />
     </div>
   );

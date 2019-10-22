@@ -17,46 +17,44 @@ import PropTypes from "prop-types";
 const ItemCard = ({ classes, item }) => {
   return (
     <Card className={classes.cardholder}>
-      <CardActionArea>
-        <Link to="http://www.google.com">
-          <CardMedia
-            className={classes.cardimage}
-            image="http://place-puppy.com/500x280"
-            title="puppy place"
+      <Link to="http://www.google.com">
+        <CardMedia
+          className={classes.cardimage}
+          image="http://place-puppy.com/500x280"
+          title="puppy place"
+        />
+      </Link>
+      <CardContent>
+        <div className={classes.cardcontentdiv}>
+          <Avatar
+            className={classes.personicon}
+            alt="Puppy Name"
+            src="http://place-puppy.com/500x280"
           />
-        </Link>
-        <CardContent>
-          <div className={classes.cardcontentdiv}>
-            <Avatar
-              className={classes.personicon}
-              alt="Puppy Name"
-              src="http://place-puppy.com/500x280"
-            />
-            <Typography className={classes.userinfo}>
-              <Box>{item.itemowner.fullname}</Box>
-              <Box color="lightgrey">25 years ago</Box>
-            </Typography>
-          </div>
+          <Typography className={classes.userinfo}>
+            <Box>{item.itemowner.fullname}</Box>
+            <Box color="lightgrey">25 years ago</Box>
+          </Typography>
+        </div>
 
-          <div className={classes.carddetails}>
-            <Typography>
-              <Box className={classes.carddetail}>{item.title}</Box>
+        <div className={classes.carddetails}>
+          <Typography>
+            <Box className={classes.carddetail}>{item.title}</Box>
 
-              {item.tags.map(tag => (
-                <Box
-                  color="lightgrey"
-                  className={classes.carddetail}
-                  key={tag.id}
-                >
-                  {tag.title}
-                </Box>
-              ))}
+            {item.tags.map(tag => (
+              <Box
+                color="lightgrey"
+                className={classes.carddetail}
+                key={tag.id}
+              >
+                {tag.title}
+              </Box>
+            ))}
 
-              <Box className={classes.carddetail}>{item.description}</Box>
-            </Typography>
-          </div>
-        </CardContent>
-      </CardActionArea>
+            <Box className={classes.carddetail}>{item.description}</Box>
+          </Typography>
+        </div>
+      </CardContent>
 
       <CardActions className={classes.cardbutton}>
         <Button variant="contained" className={classes.buttonborrow}>

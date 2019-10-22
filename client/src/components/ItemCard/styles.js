@@ -19,7 +19,7 @@ const styles = theme => ({
     paddingLeft: "20px"
   },
   cardimage: {
-    height: "50vw"
+    height: "300px"
   },
   personicon: {
     height: "50px",

@@ -62,7 +62,7 @@ class ShareForm extends Component {
                 <FormControl className={classes.shareformtags}>
                   <label>
                     <Field
-                      name="sauces"
+                      name="photography"
                       component="input"
                       type="checkbox"
                       value="Photography"
@@ -75,10 +75,10 @@ class ShareForm extends Component {
                 <FormControl className={classes.shareformtags}>
                   <label>
                     <Field
-                      name="sauces"
+                      name="flying"
                       component="input"
                       type="checkbox"
-                      value="Photography"
+                      value="Flying"
                     />
                     Flying
                     <AirplanemodeActiveIcon />
@@ -88,10 +88,10 @@ class ShareForm extends Component {
                 <FormControl className={classes.shareformtags}>
                   <label>
                     <Field
-                      name="sauces"
+                      name="golfing"
                       component="input"
                       type="checkbox"
-                      value="Photography"
+                      value="Golfing"
                     />
                     Golfing
                     <GolfCourseIcon />
@@ -101,10 +101,10 @@ class ShareForm extends Component {
                 <FormControl className={classes.shareformtags}>
                   <label>
                     <Field
-                      name="sauces"
+                      name="driving"
                       component="input"
                       type="checkbox"
-                      value="Photography"
+                      value="Driving"
                     />
                     Driving
                     <DriveEtaIcon />
@@ -114,10 +114,10 @@ class ShareForm extends Component {
                 <FormControl className={classes.shareformtags}>
                   <label>
                     <Field
-                      name="sauces"
+                      name="woodworking"
                       component="input"
                       type="checkbox"
-                      value="Photography"
+                      value="Woodworking"
                     />
                     Woodworking
                     <GavelIcon />

@@ -6,14 +6,9 @@ import ShareItemForm from "../../components/ShareItemForm";
 
 const Share = ({ classes, tags }) => {
   return (
-    <div>
-      <div>
-        <ShareItemPreview className={classes.itempreview} tags={tags} />
-      </div>
-
-      <div>
-        <ShareItemForm className={classes.itemform} tags={tags} />
-      </div>
+    <div className={classes.shareformpreview}>
+      <ShareItemPreview className={classes.itempreview} tags={tags} />
+      <ShareItemForm className={classes.itemform} tags={tags} />
     </div>
   );
 };

@@ -6,7 +6,7 @@ import styles from "./styles";
 
 const ItemsGrid = ({ classes, items }) => {
   return (
-    <Grid container className={classes.itemsgridholder}>
+    <Grid container spacing={4} className={classes.itemsgridholder}>
       {items.map(item => (
         <Grid item xs={4} key={item.id}>
           <ItemCard className={classes.itemgridholder} item={item} />
