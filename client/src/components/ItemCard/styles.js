@@ -1,38 +1,30 @@
-import { fontSize, flexbox, textAlign } from "@material-ui/system";
-
 const styles = theme => ({
-  buttonborrow: {
-    background: "none",
-    boxShadow: "none",
-    border: "1px solid #525252",
-    fontSize: "15px"
+  avatar: {
+    width: "50px",
+    height: "50px"
   },
-  cardbutton: {
-    paddingLeft: "18px"
-  },
-  cardcontentdiv: {
+
+  card: {
+    height: "100%",
     display: "flex",
-    justifyContent: "flex-start",
-    alignItems: "center"
+    flexDirection: "column",
+    justifyContent: "space-between"
   },
-  userinfo: {
-    paddingLeft: "20px"
+
+  media: {
+    height: "200px"
   },
-  cardimage: {
-    height: "300px"
+
+  content: {
+    marginLeft: "10px"
   },
-  personicon: {
-    height: "50px",
-    width: "50px"
+
+  text: {
+    marginBottom: "5px"
   },
-  carddetails: {
-    padding: "20px"
-  },
-  carddetail: {
+
+  button: {
     marginBottom: "10px"
-  },
-  cardtitle: {
-    fontSize: "30px"
   }
 });
 

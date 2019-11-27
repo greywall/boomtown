@@ -1,6 +1,2 @@
-const styles = theme => ({
-  itemsgridholder: {
-    padding: theme.spacing(5)
-  }
-});
+const styles = theme => ({});
 export default styles;

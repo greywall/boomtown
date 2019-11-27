@@ -1,18 +1,21 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import ItemCard from "../ItemCard/ItemCard";
 import styles from "./styles";
+import { withStyles } from "@material-ui/core/styles";
+import ItemCard from "../ItemCard/ItemCard";
+import PropTypes from "prop-types";
 
-const ItemsGrid = ({ classes, items }) => {
+const ItemsGrid = ({ items }) => {
   return (
-    <Grid container spacing={4} className={classes.itemsgridholder}>
-      {items.map(item => (
-        <Grid item xs={4} key={item.id}>
-          <ItemCard className={classes.itemgridholder} item={item} />
-        </Grid>
-      ))}
-    </Grid>
+    <div>
+      <Grid container spacing={6}>
+        {items.map(item => (
+          <Grid item xs={4} key={item.id} sm={12} md={6} lg={4}>
+            <ItemCard item={item} />
+          </Grid>
+        ))}
+      </Grid>
+    </div>
   );
 };
 
