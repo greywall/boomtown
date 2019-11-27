@@ -1,86 +1,99 @@
 import React from "react";
-import styles from "./styles";
+import {
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  Button,
+  Typography
+} from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Items from "../../pages/Items/Items";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import Link from "@material-ui/core/Link";
+import styles from "./styles";
+import Gravatar from "react-gravatar";
+
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const ItemCard = ({ classes, item }) => {
+const ItemCard = ({ classes, itemInfo }) => {
+  const defaultItemInfo = {
+    title: "Name your item",
+    itemowner: {
+      fullname: "User"
+    },
+    description: "Describe your item"
+  };
+  let info = itemInfo ? itemInfo : defaultItemInfo;
+
   return (
-    <Card className={classes.cardholder}>
-      <Link to="http://www.google.com">
-        <CardMedia
-          className={classes.cardimage}
-          image="http://place-puppy.com/500x280"
-          title="puppy place"
-        />
-      </Link>
-      <CardContent>
-        <div className={classes.cardcontentdiv}>
-          <Avatar
-            className={classes.personicon}
-            alt="Puppy Name"
-            src="http://place-puppy.com/500x280"
+    <Card className={classes.card}>
+      <CardActionArea>
+        {info.itemowner ? (
+          <CardMedia
+            className={classes.cardMediaItemsImg}
+            image={info.imageurl}
+            title={info.title}
+            component={Link}
+            to={`/profile/${info.itemowner.id}`}
           />
-          <Typography className={classes.userinfo}>
-            <Box>{item.itemowner.fullname}</Box>
-            <Box color="lightgrey">25 years ago</Box>
-          </Typography>
-        </div>
+        ) : (
+          <CardMedia
+            className={classes.cardMediaItemsImg}
+            image={info.imageurl}
+            title={info.title}
+          />
+        )}
+      </CardActionArea>
 
-        <div className={classes.carddetails}>
-          <Typography>
-            <Box className={classes.carddetail}>{item.title}</Box>
-
-            {item.tags.map(tag => (
-              <Box
-                color="lightgrey"
-                className={classes.carddetail}
-                key={tag.id}
-              >
-                {tag.title}
-              </Box>
-            ))}
-
-            <Box className={classes.carddetail}>{item.description}</Box>
-          </Typography>
-        </div>
+      <CardHeader
+        component={Link}
+        to={`/profile/${info.itemowner.id}`}
+        avatar={
+          <Gravatar
+            email={info.itemowner.email}
+            size={40}
+            className={classes.avatar}
+          />
+        }
+        title={info.itemowner.fullname}
+        subheader="October 20, 2019"
+      />
+      <CardContent>
+        <Typography
+          aria-label={info.title}
+          gutterBottom
+          variant="h5"
+          component="h2"
+        >
+          {info.title.length > 40
+            ? `${info.title.slice(0, 40)}...`
+            : info.title}
+        </Typography>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {info.tags
+            ? info.tags
+                .map(tag => tag.title)
+                .sort()
+                .join(", ")
+            : "No tags are found"}
+        </Typography>
+        <Typography
+          aria-label={info.description}
+          variant="body1"
+          color="textPrimary"
+          component="p"
+        >
+          {info.description.length > 150
+            ? `${info.description.slice(0, 150)}...`
+            : info.description}
+        </Typography>
       </CardContent>
-
-      <CardActions className={classes.cardbutton}>
-        <Button variant="contained" className={classes.buttonborrow}>
-          Borrow
-        </Button>
+      <CardActions className={classes.cardMediaItemsBtn}>
+        <Button variant="outlined">Borrow</Button>
       </CardActions>
     </Card>
   );
-};
-
-ItemCard.defaultProps = {
-  item: {
-    imageurl: "http://place-puppy.com/500x280",
-    itemowner: {
-      fullname: "Name here"
-    },
-    date: "date here",
-    title: "Item Title",
-    tags: [
-      { id: 0, title: "Tags 1" },
-      { id: 1, title: "Tags 2" },
-      { id: 2, title: "Tags 3" },
-      { id: 3, title: "Tags 4" }
-    ],
-    description: "Description goes here"
-  }
 };
 
 export default withStyles(styles)(ItemCard);

@@ -1,30 +1,15 @@
 const styles = theme => ({
-  avatar: {
-    width: "50px",
-    height: "50px"
+  cardMediaItemsImg: {
+    paddingTop: "52%"
   },
-
+  cardMediaItemsBtn: {
+    padding: theme.spacing(2)
+  },
   card: {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between"
+    height: 500
   },
-
-  media: {
-    height: "200px"
-  },
-
-  content: {
-    marginLeft: "10px"
-  },
-
-  text: {
-    marginBottom: "5px"
-  },
-
-  button: {
-    marginBottom: "10px"
+  avatar: {
+    borderRadius: "50%"
   }
 });
 

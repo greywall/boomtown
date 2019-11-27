@@ -1,22 +1,19 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
-import styles from "./styles";
-import { withStyles } from "@material-ui/core/styles";
-import ItemCard from "../ItemCard/ItemCard";
-import PropTypes from "prop-types";
+import { Grid } from "@material-ui/core";
+import { ItemCard } from "../../components";
 
-const ItemsGrid = ({ items }) => {
-  return (
-    <div>
-      <Grid container spacing={6}>
-        {items.map(item => (
-          <Grid item xs={4} key={item.id} sm={12} md={6} lg={4}>
-            <ItemCard item={item} />
-          </Grid>
-        ))}
-      </Grid>
-    </div>
-  );
-};
+const ItemsGrid = ({ items }) => (
+  <Grid container spacing={3}>
+    {items.length
+      ? items.map(itemInfo => {
+          return (
+            <Grid key={itemInfo.id} item xs={12} sm={6} md={4}>
+              <ItemCard key={itemInfo.id} itemInfo={itemInfo} />;
+            </Grid>
+          );
+        })
+      : `There is no item yet.`}
+  </Grid>
+);
 
-export default withStyles(styles)(ItemsGrid);
+export default ItemsGrid;
