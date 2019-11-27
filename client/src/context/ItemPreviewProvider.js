@@ -11,7 +11,7 @@ class ItemPreviewProvider extends Component {
         description: "Initial description",
         created: new Date(),
         tags: [],
-        imageurl: "https://via.placeholder.com/350",
+        imageurl: "https://via.placeholder.com/250",
         itemowner: {}
       }
     };
@@ -28,7 +28,7 @@ class ItemPreviewProvider extends Component {
         description: "Initial description",
         created: new Date(),
         tags: [],
-        imageurl: "https://via.placeholder.com/350",
+        imageurl: "https://via.placeholder.com/250",
         itemowner: {}
       }
     });
