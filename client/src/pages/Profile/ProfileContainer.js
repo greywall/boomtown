@@ -3,26 +3,31 @@ import Profile from "./Profile";
 import FullScreenLoader from "../../components/FullScreenLoader";
 import { Query } from "react-apollo";
 import { ALL_USER_ITEMS_QUERY } from "../../apollo/queries";
-import { ViewerContext } from "../../context/ViewerProvider";
 
+import { ViewerContext } from "../../context/ViewerProvider";
 class ProfileContainer extends Component {
   render() {
+    const { match } = this.props;
+
     return (
       <ViewerContext.Consumer>
-        {({ viewer }) => (
-          <div>
+        {({ viewer }) => {
+          return (
             <Query
               query={ALL_USER_ITEMS_QUERY}
-              variables={{ id: this.props.match.params.userId || viewer.id }}
+              variables={{
+                id: match.params.id || viewer.id
+              }}
+              fetchPolicy="network-only"
             >
               {({ loading, error, data }) => {
-                if (loading) return "Loading...";
-                if (error) return `Error! ${error.message}`;
-                return <Profile user={data.user} />;
+                if (loading) return <FullScreenLoader />;
+                if (error) return `Error: ${error}`;
+                if (data) return <Profile userInfo={data.user} />;
               }}
             </Query>
-          </div>
-        )}
+          );
+        }}
       </ViewerContext.Consumer>
     );
   }
