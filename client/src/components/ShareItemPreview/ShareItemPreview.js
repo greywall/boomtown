@@ -1,15 +1,21 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import ItemCard from "../ItemCard/ItemCard";
-import styles from "./styles";
+import ItemCard from "../ItemCard";
+import { ItemPreviewContext } from "../../context/ItemPreviewProvider";
 
-const ShareItemPreview = ({ classes }) => {
+const ShareItemPreview = () => {
   return (
-    <div className={classes.shareitemprev}>
-      <ItemCard />
-    </div>
+    <ItemPreviewContext.Consumer>
+      {({ state, updatePreview, resetPreview }) => {
+        return (
+          <ItemCard
+            itemInfo={state.item}
+            updatePreview={updatePreview}
+            resetPreview={resetPreview}
+          />
+        );
+      }}
+    </ItemPreviewContext.Consumer>
   );
 };
 
-export default withStyles(styles)(ShareItemPreview);
+export default ShareItemPreview;
