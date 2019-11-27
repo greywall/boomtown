@@ -1,56 +1,93 @@
-import React from "react";
+import React, { Component } from "react";
 import styles from "./styles";
-import { withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
+import {
+  AppBar,
+  Toolbar,
+  Fab,
+  IconButton,
+  Icon,
+  Slide
+} from "@material-ui/core";
+import { AddCircle as AddCircleIcon } from "@material-ui/icons";
+import { withStyles } from "@material-ui/core";
+import MenuBarIcon from "./../MenuBarIcon";
 import logo from "../../images/boomtown.svg";
-// import Icon from "@material-ui/core/Icon";
-import Menubaricon from "../Menubaricon";
-import Fab from "@material-ui/core/Fab";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
 
-const Menubar = ({ classes }) => {
-  return (
-    <AppBar position="static">
-      <Toolbar className="tool-bar" className={classes.toolbar}>
-        <div>
-          <NavLink
-            exact
-            className="nav-link"
-            to="/items"
-            activeClassName="selected"
+class MenuBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeShareBtn: true
+    };
+  }
+  componentDidMount() {
+    const { location } = this.props;
+    if (location.pathname === "/share" && this.state.activeShareBtn === true) {
+      this.changeStateShare();
+    } else if (
+      location.pathname !== "/share" &&
+      this.state.activeShareBtn === false
+    ) {
+      this.changeStateShare();
+    }
+  }
+  componentDidUpdate() {
+    const { location } = this.props;
+    if (location.pathname === "/share" && this.state.activeShareBtn === true) {
+      this.changeStateShare();
+    } else if (
+      location.pathname !== "/share" &&
+      this.state.activeShareBtn === false
+    ) {
+      this.changeStateShare();
+    }
+  }
+
+  changeStateShare = () => {
+    this.setState({ activeShareBtn: !this.state.activeShareBtn });
+  };
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <AppBar position="fixed">
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="menu"
+            component={NavLink}
+            to={"/items"}
           >
-            <img
-              src={logo}
-              className={classes.applogo}
-              alt="logo"
-              height="30px"
-              weight="20px"
-            />
-          </NavLink>
-        </div>
+            <Icon className={classes.menuButton}>
+              <img className={classes.imgLogo} src={logo} alt="Boomtown" />
+            </Icon>
+          </IconButton>
 
-        <div className={classes.navigationtoolbar}>
-          <NavLink exact to="/share">
-            <Fab
-              className={classes.navigationtoolbarbutton}
-              color="primary"
-              variant="extended"
+          <div className={classes.menuBar}>
+            <Slide
+              direction="left"
+              in={this.state.activeShareBtn}
+              unmountOnExit
             >
-              <AddCircleIcon
-                className={classes.navigationtooladdicon}
-                aria-label="add"
-                size="large"
-              />
-              SHARE SOMETHING
-            </Fab>
-          </NavLink>
-          <Menubaricon className="menubaricon1"></Menubaricon>
-        </div>
-      </Toolbar>
-    </AppBar>
-  );
-};
+              <Fab
+                className={classes.btnShare}
+                variant="extended"
+                color="primary"
+                aria-label="share"
+                component={NavLink}
+                to={"/share"}
+              >
+                <AddCircleIcon className={classes.extendedIcon} />
+                Share something
+              </Fab>
+            </Slide>
+            <MenuBarIcon />
+          </div>
+        </Toolbar>
+      </AppBar>
+    );
+  }
+}
 
-export default withStyles(styles)(Menubar);
+export default withRouter(withStyles(styles)(MenuBar));

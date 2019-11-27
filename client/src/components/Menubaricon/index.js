@@ -1,3 +1,3 @@
-import Menubaricon from "./Menubaricon";
+import MenuBarIcon from "./MenuBarIcon";
 
-export default Menubaricon;
+export default MenuBarIcon;

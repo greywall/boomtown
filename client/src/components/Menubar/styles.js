@@ -1,41 +1,27 @@
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    fontSize: 500
-  },
   menuButton: {
-    marginRight: theme.spacing(40),
-    justifyContent: "flex-end",
-    backgroundColor: "green"
+    marginRight: 0,
+    width: theme.typography.pxToRem(48),
+    height: theme.typography.pxToRem(48)
   },
-  toolbar: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center"
+  imgLogo: {
+    height: "100%"
   },
-  navigationtoolbar: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexwrap: "wrap"
-  },
-  navigationtoolbarbutton: {
-    shadowColor: "#FFF",
-    boxShadow: "none"
-  },
-  navigationtooladdicon: {
-    color: "#000"
-  },
-  Menubaricon: {
-    justifyContent: "flex-end",
-    backgroundColor: "green"
-  },
-  title: {
+  menuBar: {
     flexGrow: 1,
-    fontSize: 500
+    display: "flex",
+    justifyContent: "flex-end"
   },
-  menubaricon1: {
-    backgroundColor: "green"
+  btnShare: {
+    boxShadow: "none",
+    marginRight: theme.spacing(2),
+    "&:hover": {
+      boxShadow: "none",
+      backgroundColor: "rgba(0, 0, 0, 0.08)"
+    }
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(1)
   }
 });
 

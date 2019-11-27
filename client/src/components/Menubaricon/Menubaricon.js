@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 
 const ITEM_HEIGHT = 48;
 
-export default function Menubaricon() {
+export default function MenuBarIcon() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 

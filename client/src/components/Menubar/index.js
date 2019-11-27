@@ -1,3 +1,3 @@
-import Menubar from "./Menubar";
+import MenuBar from "./MenuBar";
 
-export default Menubar;
+export default MenuBar;

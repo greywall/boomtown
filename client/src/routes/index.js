@@ -4,12 +4,12 @@ import Home from "../pages/Home";
 import Items from "../pages/Items";
 import Profile from "../pages/Profile";
 import Share from "../pages/Share";
-import Menubar from "../components/Menubar";
+import MenuBar from "../components/MenuBar";
 
 export default () => {
   return (
     <Fragment>
-      <Menubar />
+      <MenuBar />
       <Switch>
         <Route path="/welcome" component={Home} />
         <Route path="/share" component={Share} />
