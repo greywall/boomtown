@@ -20,6 +20,7 @@
     "final-form": "^4.13.1",
     "graphql": "^14.3.1",
     "graphql-tag": "^2.10.1",
+    "material-ui-icons": "^1.0.0-beta.36",
     "moment": "^2.24.0",
     "react": "^16.4.1",
     "react-apollo": "^2.5.6",

@@ -1,13 +1,15 @@
 const { ApolloError } = require("apollo-server");
 
 const queryResolvers = app => ({
-  viewer(parent, args, context, info) {
-    console.log(context);
+  viewer(parent, args, { user }, info) {
+    console.log(user);
+
     return user;
   },
   async user(parent, { id }, { pgResource }, info) {
     try {
       const user = await pgResource.getUserById(id);
+      console.log(user);
       return user;
     } catch (e) {
       throw new ApolloError(e);

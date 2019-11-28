@@ -1,6 +1,6 @@
-const MockApp = require('../../../../__mocks__/mock-app');
-const MockUser = require('../../../../__mocks__/db/User');
-const resolvers = require('../../../../api/resolvers');
+const MockApp = require("../../../../__mocks__/mock-app");
+const MockUser = require("../../../../__mocks__/db/User");
+const resolvers = require("../../../../api/resolvers");
 
 const viewer = () => {
   const app = new MockApp();
@@ -21,6 +21,8 @@ const viewer = () => {
   expect(output).toEqual(null);
 };
 
+console.log(viewer);
+console.log(context);
 module.exports = {
   viewer
 };

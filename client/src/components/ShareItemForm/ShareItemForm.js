@@ -48,18 +48,11 @@ class ShareForm extends Component {
     updatePreview({
       ...values,
       tags: this.applyTags(values.tags || [], allTags)
-      // null can not be maped
     });
   };
 
   saveItems = async (values, allTags, addItem) => {
     try {
-      // new item
-      // const newItem = {
-      //   ...values,
-      //   tags: this.applyTags(values.tags || [], allTags)
-      // };
-      // add item
       await addItem({
         variables: {
           title: values.title,
@@ -74,9 +67,7 @@ class ShareForm extends Component {
   };
 
   render() {
-    // this tags are alltags coming from the server
     const { classes, tags } = this.props;
-    // console.log(tags);
 
     return (
       <ItemPreviewContext.Consumer>
@@ -117,7 +108,6 @@ class ShareForm extends Component {
                           }}
                         />
 
-                        {/* /End of FormSpy/ */}
                         <Field
                           name="title"
                           render={({ input, meta }) => (
@@ -135,7 +125,7 @@ class ShareForm extends Component {
                             />
                           )}
                         />
-                        {/* // */}
+
                         <Field
                           name="description"
                           render={({ input, meta }) => (
@@ -153,7 +143,7 @@ class ShareForm extends Component {
                             />
                           )}
                         />
-                        {/* // */}
+
                         <Field
                           name="imageurl"
                           render={({ input, meta }) => (
@@ -171,7 +161,7 @@ class ShareForm extends Component {
                             />
                           )}
                         />
-                        {/* // */}
+
                         <div className={classes.ShareItemFormContents}>
                           <Typography
                             gutterBottom
@@ -181,7 +171,6 @@ class ShareForm extends Component {
                           >
                             Add Tags:
                           </Typography>
-                          {/* start tag map */}
                           {tags.map((tag, index) => (
                             <label key={index}>
                               <Field
@@ -194,25 +183,22 @@ class ShareForm extends Component {
                               {
                                 ({ index } =
                                   index === 0 ? (
-                                    <AccountBalanceIcon />
+                                    <AcUnitIcon />
                                   ) : index === 1 ? (
-                                    <AirportShuttleIcon />
+                                    <AccountBalanceIcon />
                                   ) : index === 2 ? (
                                     <AccountBalanceWalletIcon />
                                   ) : index === 3 ? (
                                     <AdbIcon />
                                   ) : index === 4 ? (
-                                    <AlbumIcon />
+                                    <AirportShuttleIcon />
                                   ) : (
-                                    <AcUnitIcon />
+                                    <AlbumIcon />
                                   ))
                               }
                             </label>
                           ))}
-
-                          {/* end tag map */}
                         </div>
-                        {/* */}
                         <Button
                           variant="contained"
                           color="secondary"

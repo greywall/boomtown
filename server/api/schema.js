@@ -1,7 +1,8 @@
 const { gql } = require("apollo-server-express");
 
 module.exports = gql`
-  # scalar Date
+  scalar Date
+
   type Item {
     id: ID!
     title: String!
@@ -9,7 +10,7 @@ module.exports = gql`
     description: String!
     itemowner: User!
     tags: [Tag]!
-    created: String
+    created: Date
     borrower: User
   }
   type User {

@@ -9,7 +9,9 @@ export const ViewerProvider = ({ children }) => {
     <Query query={VIEWER_QUERY}>
       {({ data, error, loading }) => {
         const viewer = data && data.viewer ? data.viewer : null;
-        console.log(viewer);
+        // console.log(viewer);
+        // console.log(data);
+
         return (
           <ViewerContext.Provider value={{ viewer, loading }}>
             {children}

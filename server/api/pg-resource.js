@@ -1,22 +1,17 @@
-function tagsQueryString(tags, itemid, result) {
-  for (i = tags.length; i > 0; i--) {
-    result += `($${i}, ${itemid}),`;
-  }
-  return result.slice(0, -1) + ";";
-}
-
 module.exports = postgres => {
   return {
     async createUser({ fullname, email, password }) {
       const newUserInsert = {
         text: `INSERT into USERS (fullname, email, password)
-        values ($1, $2, $3)`, // TODO : Authentication - Server
+        values ($1, $2, $3) RETURNING *`,
         values: [fullname, email, password]
       };
       try {
         const user = await postgres.query(newUserInsert);
+        console.log(user.rows[0]);
         return user.rows[0];
       } catch (e) {
+        console.log(e);
         switch (true) {
           case /users_fullname_key/.test(e.message):
             throw "An account with this username already exists.";
@@ -27,9 +22,10 @@ module.exports = postgres => {
         }
       }
     },
+
     async getUserAndPasswordForVerification(email) {
       const findUserQuery = {
-        text: "SELECT * FROM users WHERE email = $1", // TODO : Authentication - Server
+        text: `SELECT * FROM users WHERE email = $1`,
         values: [email]
       };
 

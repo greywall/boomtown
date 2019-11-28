@@ -90,6 +90,8 @@ export const VIEWER_QUERY = gql`
     viewer {
       id
       email
+      fullname
+      bio
     }
   }
 `;
@@ -106,6 +108,9 @@ export const SIGNUP_MUTATION = gql`
       token
       user {
         id
+        email
+        fullname
+        bio
       }
     }
   }
@@ -117,6 +122,8 @@ export const LOGIN_MUTATION = gql`
       token
       user {
         id
+        email
+        fullname
       }
     }
   }

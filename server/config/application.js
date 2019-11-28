@@ -7,24 +7,8 @@ const path = require("path");
 module.exports = app => {
   const PORT = process.env.PORT || 8080;
 
-  /**
-   *  @TODO: Configuration Variables
-   *
-
-   *  JWT_SECRET (Ignore for now)
-   *
-   *  And the following non-security related information should also be set for use elsewhere:
-   *
-   *  JWT_COOKIE_NAME
-   *  CORS_CONFIG (already set for you below)
-   *
-   *  Use the app.set and process.env to retrieve environment variables, and provide a fallback
-   *  if any are not defined.
-   *
-   *  Use Express' app.set() to store additional configuration information.
-   *
-   *  For example: app.set('PG_HOST', process.env.PG_HOST || 'localhost')
-   */
+  app.set("JWT_SECRET", process.env.JWT_SECRET || "keyboardcat");
+  app.set("JWT_COOKIE_NAME", process.env.JWT_COOKIE_NAME || "boomToken");
 
   app.set("PG_HOST", process.env.PG_HOST || "localhost");
   app.set("PG_USER", process.env.PG_USER || "boomtown");

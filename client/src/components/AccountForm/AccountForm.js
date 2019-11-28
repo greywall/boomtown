@@ -39,6 +39,7 @@ class AccountForm extends Component {
               ? await LOGIN_MUTATION({ variables: { user: values } })
               : await SIGNUP_MUTATION({ variables: { user: values } });
           } catch (e) {
+            console.log(e);
             this.setState({ error: e });
             // this.setState({ error: { database: { ...e } } });
           }
@@ -88,7 +89,7 @@ class AccountForm extends Component {
                       autoComplete: "off",
                       ...input
                     }}
-                    value={input.value}
+                    // value={input.value}
                   />
                 )}
               />
@@ -106,7 +107,7 @@ class AccountForm extends Component {
                     }}
                     {...input}
                     type="password"
-                    value={input.value}
+                    // value={input.value}
                   />
                 )}
               ></Field>
@@ -154,11 +155,6 @@ class AccountForm extends Component {
     );
   }
 }
-
-AccountForm.propTypes = {
-  LOGIN_MUTATION: PropTypes.func.isRequired,
-  SIGNUP_MUTATION: PropTypes.func.isRequired
-};
 
 const refetchQueries = [
   {
