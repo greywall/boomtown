@@ -7,23 +7,23 @@ import PrivateRoute from "../components/PrivateRoute";
 
 export default () => (
   <ViewerContext.Consumer>
-    {({}) => {
-      // if (viewer) {
-      //   return (
-      //     <Switch>
-      //       <Route exact path="/welcome" component={Home} />
-      //       <Redirect from="*" to="/welcome" />
-      //     </Switch>
-      //   );
-      // }
+    {({ viewer }) => {
+      if (!viewer) {
+        return (
+          <Switch>
+            <Route exact path="/welcome" component={Home} />
+            <Redirect from="*" to="/welcome" />
+          </Switch>
+        );
+      }
       return (
         <Fragment>
-          <MenuBar />
+          {/* <MenuBar /> */}
           <Switch>
-            <PrivateRoute exact path="/share" component={Share} />
             <PrivateRoute exact path="/items" component={Items} />
-            <PrivateRoute exact path="/profile/:id" component={Profile} />
-            <PrivateRoute exact path="/profile" component={Profile} />
+            <PrivateRoute exact path="/share" component={Share} />
+            <PrivateRoute path="/profile/:id" component={Profile} />
+            <PrivateRoute path="/profile" component={Profile} />
             <Redirect from="*" to="/items" />
           </Switch>
         </Fragment>
