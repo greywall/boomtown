@@ -51,7 +51,7 @@ module.exports = postgres => {
     },
     async getItems(idToOmit) {
       const getItems = {
-        text: `SELECT * FROM items WHERE ownerid != $1`,
+        text: `SELECT * FROM items WHERE itemowner != $1`,
         values: idToOmit ? [idToOmit] : []
       };
       try {
@@ -63,7 +63,7 @@ module.exports = postgres => {
     },
     async getItemsForUser(id) {
       const getItemsForUser = {
-        text: `SELECT * FROM items WHERE ownerid = $1;`,
+        text: `SELECT * FROM items WHERE itemowner = $1;`,
         values: [id]
       };
       try {
@@ -121,9 +121,9 @@ module.exports = postgres => {
                 const { title, description, tags } = item;
 
                 const itemsQuery = {
-                  text: `INSERT INTO items (title, description, ownerid)
-                 values ($1,$2, $3) returning *;`,
-                  values: [title, description, user]
+                  text: `INSERT INTO items (title, description, itemowner, imageurl)
+                 values ($1,$2, $3, $4) returning *;`,
+                  values: [title, description, user.id, imageurl]
                 };
 
                 const newItem = await postgres.query(itemsQuery);

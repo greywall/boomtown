@@ -21,10 +21,10 @@ module.exports = {
   },
 
   Item: {
-    async itemowner({ ownerid }, args, { pgResource }, info) {
+    async itemowner({ itemowner }, args, { pgResource }, info) {
       try {
-        const itemowner = await pgResource.getUserById(ownerid);
-        return itemowner;
+        const owner = await pgResource.getUserById(itemowner);
+        return owner;
       } catch (e) {
         throw new ApolloError(e);
       }

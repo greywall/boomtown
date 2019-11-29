@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import { AddCircle as AddCircleIcon } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core";
-import MenuBarIcon from "./../MenuBarIcon";
+import MenuBarIcon from "../MenuBarIcon";
 import logo from "../../images/boomtown.svg";
 
 class MenuBar extends Component {
