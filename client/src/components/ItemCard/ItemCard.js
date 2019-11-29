@@ -57,7 +57,7 @@ const ItemCard = ({ classes, itemInfo }) => {
           />
         }
         title={info.itemowner.fullname}
-        subheader="October 20, 2019"
+        subheader="October 1, 2019"
       />
       <CardContent>
         <Typography
