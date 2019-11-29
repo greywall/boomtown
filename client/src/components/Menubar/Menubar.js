@@ -1,14 +1,7 @@
 import React, { Component } from "react";
 import styles from "./styles";
-import { NavLink, withRouter } from "react-router-dom";
-import {
-  AppBar,
-  Toolbar,
-  Fab,
-  IconButton,
-  Icon,
-  Slide
-} from "@material-ui/core";
+import { Link, NavLink, withRouter } from "react-router-dom";
+import { AppBar, Toolbar, Fab, IconButton, Icon } from "@material-ui/core";
 import { AddCircle as AddCircleIcon } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core";
 import MenuBarIcon from "../MenuBarIcon";
@@ -53,29 +46,33 @@ class MenuBar extends Component {
     return (
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="menu"
-            component={NavLink}
-            to={"/items"}
-          >
-            <Icon className={classes.menuButton}>
-              <img className={classes.imgLogo} src={logo} alt="Boomtown" />
-            </Icon>
-          </IconButton>
+          <Link to="/items" color="inherit">
+            <IconButton
+              color="inherit"
+              aria-label="menu"
+              // component={NavLink}
+              to={"/items"}
+            >
+              <Icon className={classes.menuButton}>
+                <img className={classes.imgLogo} src={logo} alt="Boomtown" />
+              </Icon>
+            </IconButton>
+          </Link>
 
           <div className={classes.menuBar}>
-            <Fab
+            {/* <Fab
               className={classes.btnShare}
               variant="extended"
               color="primary"
               aria-label="share"
               component={NavLink}
               to={"/share"}
-            >
+            ></Fab> */}
+
+            <Link to="/share" color="inherit">
               <AddCircleIcon className={classes.extendedIcon} />
               Share something
-            </Fab>
+            </Link>
             <MenuBarIcon />
           </div>
         </Toolbar>
