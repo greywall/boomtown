@@ -6,7 +6,7 @@ const styles = theme => ({
     padding: theme.spacing(2)
   },
   card: {
-    height: 500
+    height: 700
   },
   avatar: {
     borderRadius: "50%"

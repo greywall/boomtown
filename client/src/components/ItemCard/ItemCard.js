@@ -57,7 +57,7 @@ const ItemCard = ({ classes, itemInfo }) => {
           />
         }
         title={info.itemowner.fullname}
-        subheader="October 1, 2019"
+        subheader="October 20, 2019"
       />
       <CardContent>
         <Typography
@@ -96,4 +96,24 @@ const ItemCard = ({ classes, itemInfo }) => {
   );
 };
 
+ItemCard.propTypes = {
+  itemInfo: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    imageurl: PropTypes.string,
+    tags: PropTypes.array,
+    itemowner: PropTypes.object,
+    borrower: PropTypes.object,
+    created: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+  }),
+
+  viewer: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    fullname: PropTypes.string.isRequired,
+    imageurl: PropTypes.string,
+    bio: PropTypes.string
+  })
+};
 export default withStyles(styles)(ItemCard);

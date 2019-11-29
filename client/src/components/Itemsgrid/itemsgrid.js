@@ -8,7 +8,7 @@ const ItemsGrid = ({ items }) => (
       ? items.map(itemInfo => {
           return (
             <Grid key={itemInfo.id} item xs={12} sm={6} md={4}>
-              <ItemCard key={itemInfo.id} itemInfo={itemInfo} />
+              <ItemCard key={itemInfo.id} itemInfo={itemInfo} />;
             </Grid>
           );
         })

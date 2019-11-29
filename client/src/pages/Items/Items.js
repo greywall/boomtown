@@ -1,13 +1,19 @@
+//Stateless Component
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
-import ItemsGrid from "../../components/ItemsGrid/ItemsGrid";
+import { Container } from "@material-ui/core";
+import { ItemsGrid } from "../../components";
 
 const Items = ({ classes, items }) => {
   return (
-    <div className={classes.root}>
+    <Container
+      component="section"
+      maxWidth={false}
+      className={classes.pageItems}
+    >
       <ItemsGrid items={items} />
-    </div>
+    </Container>
   );
 };
 
