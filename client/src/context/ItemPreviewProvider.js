@@ -38,7 +38,7 @@ class ItemPreviewProvider extends Component {
     return (
       <ItemPreviewContext.Provider
         value={{
-          state: this.state,
+          ...this.state,
           updatePreview: this.updatePreview,
           resetPreview: this.resetPreview
         }}

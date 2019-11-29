@@ -65,23 +65,23 @@ class MenuBar extends Component {
           </IconButton>
 
           <div className={classes.menuBar}>
-            <Slide
+            {/* <Slide
               direction="left"
               in={this.state.activeShareBtn}
               unmountOnExit
             >
-              <Fab
-                className={classes.btnShare}
-                variant="extended"
-                color="primary"
-                aria-label="share"
-                component={NavLink}
-                to={"/share"}
-              >
-                <AddCircleIcon className={classes.extendedIcon} />
-                Share something
-              </Fab>
-            </Slide>
+          </Slide> */}
+            <Fab
+              className={classes.btnShare}
+              variant="extended"
+              color="primary"
+              aria-label="share"
+              component={NavLink}
+              to={"/share"}
+            >
+              <AddCircleIcon className={classes.extendedIcon} />
+              Share something
+            </Fab>
             <MenuBarIcon />
           </div>
         </Toolbar>

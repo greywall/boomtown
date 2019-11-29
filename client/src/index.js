@@ -22,9 +22,11 @@ const App = () => {
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         <ViewerProvider>
-          <Router>
-            <Routes />
-          </Router>
+          <ItemPreviewProvider>
+            <Router>
+              <Routes />
+            </Router>
+          </ItemPreviewProvider>
         </ViewerProvider>
       </MuiThemeProvider>
     </ApolloProvider>

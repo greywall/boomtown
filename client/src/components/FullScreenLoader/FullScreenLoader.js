@@ -1,5 +1,5 @@
 import React from "react";
 
-const FullScreenLoader = () => <p>Loading...</p>;
+const FullScreenLoader = props => <p>Loading...</p>;
 
 export default FullScreenLoader;

@@ -18,7 +18,7 @@ export default () => (
       }
       return (
         <Fragment>
-          {/* <MenuBar /> */}
+          <MenuBar />
           <Switch>
             <PrivateRoute exact path="/items" component={Items} />
             <PrivateRoute exact path="/share" component={Share} />

@@ -5,10 +5,11 @@ import { ItemPreviewContext } from "../../context/ItemPreviewProvider";
 const ShareItemPreview = () => {
   return (
     <ItemPreviewContext.Consumer>
-      {({ state, updatePreview, resetPreview }) => {
+      {({ item, updatePreview, resetPreview }) => {
+        console.log(item);
         return (
           <ItemCard
-            itemInfo={state.item}
+            itemInfo={item}
             updatePreview={updatePreview}
             resetPreview={resetPreview}
           />

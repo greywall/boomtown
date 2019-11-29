@@ -5,7 +5,9 @@ import ItemsGrid from "../../components/ItemsGrid/ItemsGrid";
 
 const Items = ({ classes, items }) => {
   return (
-    <div className={classes.root}>{/* <ItemsGrid items={items} /> */}</div>
+    <div className={classes.root}>
+      <ItemsGrid items={items} />
+    </div>
   );
 };
 
