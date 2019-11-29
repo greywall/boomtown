@@ -74,22 +74,37 @@ export const ALL_TAGS_QUERY = gql`
 `;
 
 export const ADD_ITEM_MUTATION = gql`
-  mutation addItem($item: NewItemInput!) {
-    addItem(item: $item) {
-      id
+  mutation addItem(
+    $title: String!
+    $description: String!
+    $imageurl: String
+    $tags: [AssignedTag]!
+  ) {
+    addItem(
+      input: {
+        title: $title
+        description: $description
+        imageurl: $imageurl
+        tags: $tags
+      }
+    ) {
+      title
+      description
+      imageurl
+      tags {
+        id
+        title
+      }
     }
   }
 `;
-
-/*
- * Auth-related queries and mutations.
- */
 
 export const VIEWER_QUERY = gql`
   query {
     viewer {
       id
       email
+      bio
     }
   }
 `;

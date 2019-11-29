@@ -65,12 +65,6 @@ class MenuBar extends Component {
           </IconButton>
 
           <div className={classes.menuBar}>
-            {/* <Slide
-              direction="left"
-              in={this.state.activeShareBtn}
-              unmountOnExit
-            >
-          </Slide> */}
             <Fab
               className={classes.btnShare}
               variant="extended"
