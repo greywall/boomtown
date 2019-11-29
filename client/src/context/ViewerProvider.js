@@ -11,7 +11,7 @@ export const ViewerProvider = ({ children }) => {
       {({ data, error, loading }) => {
         if (loading) return <FullScreenLoader />;
         const viewer = data && data.viewer ? data.viewer : null;
-        console.log(viewer);
+        // console.log(viewer);
 
         return (
           <ViewerContext.Provider value={{ viewer, loading }}>

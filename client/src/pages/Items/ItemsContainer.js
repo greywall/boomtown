@@ -21,7 +21,7 @@ class ItemsContainer extends Component {
           return (
             <Query query={ALL_ITEMS_QUERY} variables={{ filter: viewer.id }}>
               {({ loading, error, data }) => {
-                console.log("data", error);
+                // console.log("data", error);
                 if (loading) return <FullScreenLoader />;
                 if (error) return `${error}`;
                 return <Items items={data.items} />;

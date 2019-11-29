@@ -74,20 +74,8 @@ export const ALL_TAGS_QUERY = gql`
 `;
 
 export const ADD_ITEM_MUTATION = gql`
-  mutation addItem(
-    $title: String!
-    $description: String!
-    $imageurl: String
-    $tags: [AssignedTag]!
-  ) {
-    addItem(
-      input: {
-        title: $title
-        description: $description
-        imageurl: $imageurl
-        tags: $tags
-      }
-    ) {
+  mutation addItem($input: NewItemInput!) {
+    addItem(input: $input) {
       title
       description
       imageurl

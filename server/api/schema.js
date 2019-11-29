@@ -40,6 +40,7 @@ module.exports = gql`
     title: String!
     description: String
     tags: [AssignedTag]!
+    imageurl: String
   }
   type Query {
     user(id: ID!): User
@@ -63,6 +64,6 @@ module.exports = gql`
     signup(user: SignUpInput): AuthPayload!
     login(user: LoginInput): AuthPayload!
     logout: Boolean
-    addItem(item: NewItemInput): Item
+    addItem(input: NewItemInput!): Item
   }
 `;

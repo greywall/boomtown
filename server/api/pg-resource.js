@@ -8,7 +8,7 @@ module.exports = postgres => {
       };
       try {
         const user = await postgres.query(newUserInsert);
-        console.log(user.rows[0]);
+        // console.log(user.rows[0]);
         return user.rows[0];
       } catch (e) {
         console.log(e);
@@ -118,7 +118,7 @@ module.exports = postgres => {
           postgres.connect((err, client, done) => {
             try {
               client.query("BEGIN", async err => {
-                const { title, description, tags } = item;
+                const { title, description, tags, imageurl } = item;
 
                 const itemsQuery = {
                   text: `INSERT INTO items (title, description, itemowner, imageurl)

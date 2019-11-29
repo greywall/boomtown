@@ -55,10 +55,12 @@ class ShareForm extends Component {
     try {
       await addItem({
         variables: {
-          title: values.title,
-          description: values.description,
-          tags: this.applyTags(values.tags || [], allTags),
-          imageurl: values.imageurl
+          input: {
+            title: values.title,
+            description: values.description,
+            tags: this.applyTags(values.tags || [], allTags),
+            imageurl: values.imageurl
+          }
         }
       });
     } catch (e) {
@@ -88,7 +90,7 @@ class ShareForm extends Component {
                   <Form
                     onSubmit={values => {
                       this.saveItems(values, tags, addItem);
-                      console.log(this.values);
+                      // console.log(this.values);
                     }}
                     validate={this.validate}
                     render={({ handleSubmit, form }) => (
@@ -97,11 +99,11 @@ class ShareForm extends Component {
                           handleSubmit(event);
                           form.reset();
                           resetPreview();
-                          console.log(addItem);
-                          console.log(handleSubmit);
-                          console.log(this.validate);
-                          console.log(this.values);
-                          console.log(tags);
+                          // console.log(addItem);
+                          // console.log(handleSubmit);
+                          // console.log(this.validate);
+                          // console.log(this.values);
+                          // console.log(tags);
                         }}
                       >
                         <FormSpy

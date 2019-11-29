@@ -21,8 +21,8 @@ const viewer = () => {
   expect(output).toEqual(null);
 };
 
-console.log(viewer);
-console.log(context);
+// console.log(viewer);
+// console.log(context);
 module.exports = {
   viewer
 };
