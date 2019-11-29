@@ -87,8 +87,7 @@ const mutationResolvers = app => ({
         item: input,
         user
       });
-      console.log(input);
-      console.log({ input });
+
       return newItem;
     } catch (e) {
       throw new ApolloError(e);

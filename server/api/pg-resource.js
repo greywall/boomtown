@@ -8,7 +8,7 @@ module.exports = postgres => {
       };
       try {
         const user = await postgres.query(newUserInsert);
-        // console.log(user.rows[0]);
+
         return user.rows[0];
       } catch (e) {
         console.log(e);

@@ -6,7 +6,6 @@ const ShareItemPreview = () => {
   return (
     <ItemPreviewContext.Consumer>
       {({ item, updatePreview, resetPreview }) => {
-        // console.log(item);
         return (
           <ItemCard
             itemInfo={item}
